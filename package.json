@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
+    "cypress:run": "cypress run",
     "generate-report": "marge test.json --reportDir reports",
     "test:report": "npm run test && npm run generate-report"
   },
