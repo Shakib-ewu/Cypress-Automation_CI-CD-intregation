@@ -3,38 +3,36 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - feature-branch
   pull_request:
     branches:
-      - ci-cd-test
+      - feature-branch
 
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run Cypress tests
-      run: npm run cypress:run
-      env:
-        CI: true
-
-    - name: Build project
-      run: npm run build
-
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Chrome (Optional, see note below)  # New step
+        run: |  # New step content
+          sudo apt-get update  # Adjust commands for Windows (see note below)
+          sudo apt-get install -y default-browser libnss3-dev libgconf-2-dev libnss3-dev libstdc++6 libx11-xcb-dev libxul-dev xvfb libappindicator1 fonts-liberation
+      - name: Run Cypress tests with Chrome
+        run: 'npm run cypress:run --browser=chrome'  # Updated command
+        env:
+          CI: true
+      - name: Build project
+        run: npm run build
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/feature-branch'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
+          publish_dir: ./build
