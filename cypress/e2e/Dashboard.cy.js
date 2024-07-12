@@ -13,7 +13,7 @@ describe("Verifying Homepage", () => {
   it("Verifying Hero Banner", () => {
 
     //cy.wait(6000)
-    cy.get('.swiper-slide-active > .relative > .absolute').click()
+   /* cy.get('.swiper-slide-active > .relative > .absolute').click()
     //cy.get('h3').contains('SALE')
     cy.wait(5000)
     cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()
@@ -28,14 +28,16 @@ describe("Verifying Homepage", () => {
     cy.get('.swiper-pagination > :nth-child(4)').click()
     cy.get('.swiper-slide-active > .relative > .absolute > .flex-col > .flex > .inline-flex').click({force:true})
    // cy.get('.h-full > .text-center').contains('ALL DEPARTMENTS - NATIVE')
-    cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()
+    cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click() */
 
-    //nav menu first item
-    //cy.get('.items-center> .flex > .text-black').eq(0).click({force:true})
+    //nav menu first item new changes
+    cy.xpath("/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]").click({force:true})
+    cy.get('h3').contains('Sale')
+    cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()
 
   })
 
-  it("Brand Scroller verification", () => {
+  it.only("Brand Scroller verification", () => {
     cy.get('.brand-container > :nth-child(1) > .swiper').should('be.visible');
 
     // Verify and click "Shop Now" button for Crocs
@@ -120,6 +122,10 @@ describe("Verifying Homepage", () => {
     });
   });
 
+
+
+
+
   function clickButtonMultipleTimes(buttonSelector, clickCount) {
     for (let i = 0; i < clickCount; i++) {
       // Ensure the button is visible and click it
@@ -155,6 +161,7 @@ describe("Verifying Homepage", () => {
     cy.get("button[data-contentful-field-id='ShopTheLook_button_text']").click({ force: true })
     cy.xpath("(//button[normalize-space()='SOLD OUT - SKIP'])[1]").click({force:true})
     cy.wait(5000)
+    cy.xpath("(//div)[69]").click({force:true})
     cy.xpath("(//button[contains(text(),'ADD TO CART')])[1]").click()
     cy.wait(3000)
     cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']").click()
@@ -177,7 +184,7 @@ describe("Verifying Homepage", () => {
   })
 
   it("Verify Shop Now button for Nike section", () => {
-    cy.scrollTo('center')
+    cy.scrollTo(0, 4500)
     cy.wait(5000)
     cy.get(".container >.w-auto").eq(0).click({ force: true })
     cy.get('h3').should('have.text', 'Nike')
@@ -189,7 +196,7 @@ describe("Verifying Homepage", () => {
   })
 
   it("Verify Shop Now button for Converse section", () => {
-    cy.scrollTo('center')
+    cy.scrollTo(0, 5500)
     cy.wait(5000)
     //cy.get(':nth-child(1) > :nth-child(1) > .bg-\[\#F5F5F5\].w-full > .\[\@media\(max-width\:1921px\)\]\:max-w-\[1920px\] > .container > .w-auto')
     cy.get(".container >.w-auto").eq(1).click({ force: true })

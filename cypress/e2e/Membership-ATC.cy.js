@@ -17,7 +17,7 @@ it("should verify product price before and after adding membership ATC", () => {
     cy.scrollTo(0, 2000);
 
     // Click the "Add To Cart" button
-    cy.xpath("")  // Products have been changed need to add one prod which has special offer
+    cy.xpath("/html[1]/body[1]/main[1]/div[1]/div[8]/div[1]/div[1]/div[1]/div[1]/button[1]")
         .click({ force: true });
 
     // Wait for cart update (consider waiting for a specific element instead)
@@ -90,20 +90,20 @@ it("should verify product price before and after adding membership ATC", () => {
 
 it.only("should verify product price before and after adding membership ATC when no discount available", () => {
     // Scroll to the product area
-    cy.scrollTo(0, 2000);
+    cy.scrollTo(0, 3000);
 
     // Click the "Add To Cart" button
-    cy.xpath("//div[@aria-label='1 / 24']//button[@aria-label='Add To Cart']//*[name()='svg']//*[name()='path' and contains(@d,'M20.5983 1')]")
+    cy.xpath("/html[1]/body[1]/main[1]/div[1]/div[8]/div[1]/div[1]/div[1]/div[1]/button[1]")
         .click({ force: true });
 
     // Wait for cart update (consider waiting for a specific element instead)
     cy.wait(3000);
 
     // Click some element (clarify what this is supposed to do)
-   // cy.xpath("(//div)[65]").click({ force: true });
+    cy.xpath("(//div)[65]").click({ force: true });
 
     // Click the final "Add To Cart" button
-    cy.xpath("(//img)[3]").click({force:true})
+    //cy.xpath("(//img)[3]").click({force:true})
     cy.wait(2000)
     cy.xpath("(//button[contains(text(),'ADD TO CART')])[1]")
         .click({ force: true });
@@ -116,12 +116,20 @@ it.only("should verify product price before and after adding membership ATC when
 
     // Extract the initial price
     cy.wait(3000)
-    cy.xpath("(//span[normalize-space()='99.95'])[1]")
+
+    cy.xpath("(//div)[75]").click({ force: true });
+    cy.xpath("//button[contains(text(),'ADD TO CART')]").click({ force: true });
+    cy.wait(2000)
+    cy.xpath("//li[1]//div[2]//div[4]//div[1]//form[1]//button[1]//*[name()='svg']").click({ force: true });
+    cy.wait(4000)
+
+
+    cy.xpath("//span[normalize-space()='116.00']")
         .invoke('text')
         .then((text) => {
             initialPrice = parseFloat(text.trim());
             cy.log('Initial Price: ' + initialPrice);
-            expect(initialPrice).to.equal(99.95); // Ensure the initial price is correct
+            expect(initialPrice).to.equal(116.00); // Ensure the initial price is correct
         });
 
     // Add the membership badge (adjust the selector to your membership badge button)
@@ -140,7 +148,7 @@ it.only("should verify product price before and after adding membership ATC when
         });
 
     // Verify the discounted price after adding membership
-    cy.xpath("//span[normalize-space()='89.96']")
+    cy.xpath("//span[normalize-space()='104.40']")
         .invoke('text')
         .then((text) => {
             const discountedPrice = parseFloat(text.trim());
@@ -153,7 +161,7 @@ it.only("should verify product price before and after adding membership ATC when
             cy.xpath("(//div[@class='w-max mb-[11px] lg:mb-[21px] bg-[#EBC436] rounded-[4px] p-[6px] text-black font-Mulish text-[11px] md:text-[14px] font-[600] leading-[140%] tracking-[0.2px]'])[1]").should('be.visible')
 
             // Extract and verify the subtotal price
-            cy.xpath("(//div[normalize-space()='CA$109.95'])[1]")
+            cy.xpath("//div[normalize-space()='CA$124.40']")
                 .invoke('text')
                 .then((text) => {
                     const subtotalPrice = parseFloat(text.trim().replace('CA$', ''));
