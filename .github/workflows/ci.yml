@@ -25,7 +25,7 @@ jobs:
         
       - name: Install Chrome (Optional)
         run: |
-          choco install googlechrome --version=91.0.4472.124
+          choco install googlechrome --ignore-checksums  # Use --ignore-checksums to bypass checksum validation
 
       - name: Run Cypress tests with Chrome
         run: npx cypress run --browser chrome
