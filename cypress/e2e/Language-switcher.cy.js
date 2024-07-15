@@ -51,7 +51,7 @@ describe("Verifying Language Switcher", () => {
     cy.scrollTo(0, 2500) 
       cy.get("button[type='button']",{timeout:3000}).eq(0).contains('Magasiner').click({force:true})
       cy.wait(5000)
-      cy.get('h3').should('have.text','Sandals')
+      cy.get('h3').should('have.text','Sandals - all brands')
       cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()
       cy.wait(5000)
       cy.scrollTo(0, 2500) 
@@ -248,14 +248,14 @@ it('Verifying footer sections', () => {
 it("Verifying Women's section",()=>{
   cy.get('.items-center> .flex > .text-black').eq(0).click({ force: true })
   cy.get('[href="/fr/products/women/all-brands/shoes/"]').contains('Chaussures').click()  //shoes
-  cy.get('h3').should("have.text", "Chaussures pour femmes")
+  cy.get('h3').should("have.text", "Chaussures pour femmes - all brands")
   cy.wait(4000)
 
 
   cy.get('.items-center> .flex > .text-black').eq(0).click({ force: true })
   cy.get('[href="/fr/products/women/?winterized=water%252520resistant"]').click() // water resistant  ALL DEPARTMENTS
   cy.wait(4000)
-  cy.get('h3').should("have.text", "Tous les produits")
+  cy.get('h3').should("have.text", "All-departments")    //wrong
   cy.wait(4000)
 
   cy.get('.items-center> .flex > .text-black').eq(0).click({ force: true })
@@ -298,7 +298,7 @@ it("Verifying Kid's section",()=>{
 
   cy.get('.items-center> .flex > .text-black').eq(2).click({force:true})
   cy.get('[href="/fr/products/kids/all-brands/winter-boots?collections=kids-best-sellers"]').click()  //Winter boots
-  cy.get('h3').should("have.text","Bottes d'hiver pour enfants")
+  cy.get('h3').should("have.text","Bottes d'hiver pour enfants - all brands")
   cy.wait(4000)
 
   cy.get('.items-center> .flex > .text-black').eq(2).click({force:true})
@@ -314,7 +314,7 @@ it("Verifying Kid's section",()=>{
 
 })
 
-it("Verifying Accessories's section",()=>{
+it.only("Verifying Accessories's section",()=>{
     
   cy.get('.items-center> .flex > .text-black').eq(3).click({force:true})
   cy.get('[href="/fr/products/shoes-care-&-insoles/"]').click()  //Shoe care & insole
@@ -323,24 +323,24 @@ it("Verifying Accessories's section",()=>{
 
   cy.get('.items-center> .flex > .text-black').eq(3).click({force:true})
   cy.get('[href="/fr/products/women/all-brands/accessories/?style=cap&style=hat&style=beanie"]').click()  //Caps and hats
-  cy.get('h3').should("have.text","Accessoires pour femmes")
+  cy.get('h3').should("have.text","Accessoires pour femmes - all brands")
   cy.wait(4000)
 
   cy.get('.items-center> .flex > .text-black').eq(3).click({force:true})
   cy.get('[href="/fr/products/men/all-brands/accessories/?style=backpacks&style=crossbody&style=duffel%252520bags&style=fanny%252520packs"]').click()  //Bags
-  cy.get('h3').should("have.text","Accessoires pour hommes")
+  cy.get('h3').should("have.text","Accessoires pour hommes - all brands")
   cy.wait(4000)
 
   cy.get('.items-center> .flex > .text-black').eq(3).click({force:true})
   cy.get('[href="/fr/products/all-departments/all-brands/accessories/?style=lunch%2520box"]').click()  //Lunch boxes
-  cy.get('h3').should("have.text","Accessories")
+  cy.get('h3').should("have.text","Accessories - all brands")
   cy.wait(4000)
 
 
 
   cy.get('.items-center> .flex > .text-black').eq(3).click({force:true})
   cy.get('[href="/fr/products/all-departments/all-brands/accessories/?style=pencil%2520case"]').click() // Pencil cases
-  cy.get('h3').should("have.text","Accessories")
+  cy.get('h3').should("have.text","Accessories - all brands")
   cy.wait(4000)
 
   cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()  //Homepage

@@ -27,7 +27,7 @@ describe("Verifying Cart Drawer French", () => {
           cy.get('.flex-col > .h-full').click({force:true})
           cy.scrollTo("bottom");
           cy.wait(2000)
-          cy.get("button[type='submit']").contains('AJOUTER AU PANIER').click({force:true})
+          cy.xpath("(//span[normalize-space()='AJOUTER AU PANIER'])[1]").contains('AJOUTER AU PANIER').click({force:true})
           cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']").click() // cart delete icon
           
           cy.scrollTo("topRight");

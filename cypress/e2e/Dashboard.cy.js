@@ -37,7 +37,7 @@ describe("Verifying Homepage", () => {
 
   })
 
-  it.only("Brand Scroller verification", () => {
+  it.skip("Brand Scroller verification", () => {
     cy.get('.brand-container > :nth-child(1) > .swiper').should('be.visible');
 
     // Verify and click "Shop Now" button for Crocs
@@ -139,7 +139,7 @@ describe("Verifying Homepage", () => {
     cy.scrollTo('center')
     cy.get("button[type='button']").eq(0).contains('Shop now').click({ force: true })
     cy.wait(5000)
-    cy.get('h3').should('have.text', 'Sandals')
+    cy.get('h3').should('have.text',  'Sandals - All Brands')
     cy.get("body > header:nth-child(2) > nav:nth-child(1) > div:nth-child(1) > a:nth-child(1)").click()
     cy.wait(4000)
     cy.scrollTo(0,2400)

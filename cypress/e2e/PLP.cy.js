@@ -1,4 +1,4 @@
-describe("Verifying Homepage", () => {
+describe("Verifying PLP", () => {
 
     beforeEach(() => {
   
