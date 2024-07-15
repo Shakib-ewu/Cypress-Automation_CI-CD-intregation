@@ -18,7 +18,7 @@ class CartDrawerPage {
     addItemToCart() {
         cy.get('.flex-col > .h-full').click({ force: true });
         cy.scrollTo("bottom");
-        cy.get("button[type='submit']").contains(' ADD TO CART').click({ force: true });
+        cy.xpath("//button[@type='submit']").contains(' ADD TO CART').click({ force: true });
     }
 
     deleteItemFromCart() {
