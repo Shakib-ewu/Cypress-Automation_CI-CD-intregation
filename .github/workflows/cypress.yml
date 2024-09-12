@@ -1,0 +1,34 @@
+
+name: CI/CD Pipeline
+ 
+on:
+  push:
+    branches:
+      - ci-cd-test
+  pull_request:
+    branches:
+      - ci-cd-test
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Chrome (Optional)
+        run: |
+          choco install googlechrome --ignore-checksums  # Use --ignore-checksums to bypass checksum validation
+ 
+      - name: Run Cypress tests with Chrome
+        run: npx cypress run --browser chrome
+        env:
+          CI: true
+      - name: Build project
+        run: npm run build
+      

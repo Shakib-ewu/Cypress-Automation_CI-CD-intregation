@@ -153,7 +153,7 @@ it.skip('Verify Personal Information Page Tests', () => {
     cy.get("input[placeholder='Password']").type('123456789');
     cy.get("button[type='submit']").click();
     cy.log('Checking content of edit password page');
-    cy.wait(3000)
+    cy.wait(4000)
     cy.get('[href="/account/password/"]').click({force:true})
     cy.wait(4000)
     cy.get("#currentPassword").type(12345678).should('be.visible').and('have.attr', 'placeholder', 'Current password')
@@ -268,19 +268,19 @@ it('Verify Rubino Membership', () => {
   cy.get('#mainContent > .flex-row > .flex > .text-black').should('have.text','You’re A Rubino Member.')
 
   cy.xpath("(//a[normalize-space()='Browse Member Zone'])[1]").click({force:true})
-  cy.get('h3').should('have.text','All-departments')
+  cy.get('h1').should('have.text','All-departments')
   cy.xpath("//a[@aria-label='account-icon']//*[name()='svg']").click({force:true});
   cy.get('[href="/account/membership/"]').click({force:true})
   cy.xpath("(//a[normalize-space()='go to shop'])[1]").as('btn').click({force:true})
   cy.wait(4000)
 
-  cy.get('h3').should('have.text','All-departments')
+  cy.get('h1').should('have.text','All-departments')
   cy.xpath("//a[@aria-label='account-icon']//*[name()='svg']").click({force:true});
   cy.get('[href="/account/membership/"]').click({force:true})
   cy.xpath("//a[normalize-space()='shop now']").click({force:true})
 
   cy.wait(4000)
-  cy.get('h3').should('have.text','All-departments')
+  cy.get('h1').should('have.text','All-departments')
   cy.xpath("//a[@aria-label='account-icon']//*[name()='svg']").click({force:true});
   cy.get('[href="/account/membership/"]').click({force:true})
   cy.xpath("//a[normalize-space()='start return']").contains('start return').click({force:true})

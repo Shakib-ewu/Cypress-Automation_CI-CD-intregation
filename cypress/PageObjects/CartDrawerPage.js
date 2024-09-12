@@ -17,11 +17,12 @@ class CartDrawerPage {
 
     addItemToCart() {
         cy.get('.flex-col > .h-full').click({ force: true });
-        cy.scrollTo("bottom");
-        cy.xpath("//button[@type='submit']").contains(' ADD TO CART').click({ force: true });
+        cy.scrollTo(0,3000);
+        cy.xpath("/html[1]/body[1]/main[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[4]/form[1]/button[1]").click({ force: true });
     }
 
     deleteItemFromCart() {
+        cy.wait(3000)
         cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']").click();
     }
 
@@ -33,11 +34,11 @@ class CartDrawerPage {
     clickFirstItemInCart() {
         cy.xpath("//span[@class='flex items-center justify-center w-max h-max relative isolate']//*[name()='svg']").click({ force: true });
         cy.xpath("/html[1]/body[1]/aside[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/a[1]/div[1]").click({ force: true });
-        cy.wait(4000);
+        cy.wait(3000);
     }
 
     navigateToBreadcrumbLink() {
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/p[1]/div[1]/span[1]/a[1]").click({ force: true });
+        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/div[1]/span[1]/a[1]").click({ force: true });
     }
 }
 
