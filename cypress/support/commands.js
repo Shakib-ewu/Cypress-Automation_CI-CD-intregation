@@ -47,6 +47,14 @@ Cypress.Commands.add('getIframe',(iFrame)=>{
 
 });
 
+// cypress/support/commands.js
+
+Cypress.Commands.add('clickButton', (selector) => {
+  cy.get(selector).click({ force: true });
+});
+
+
+
 const app = window.top;
 if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
   const style = app.document.createElement('style');

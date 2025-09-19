@@ -5,7 +5,8 @@
   "scripts": {
     "cypress:run": "cypress run",
     "generate-report": "marge test.json --reportDir reports",
-    "test:report": "npm run test && npm run generate-report"
+    "test:report": "npm run test && npm run generate-report",
+    "build": "echo 'No build step needed for this project'"
   },
   "author": "",
   "license": "ISC",

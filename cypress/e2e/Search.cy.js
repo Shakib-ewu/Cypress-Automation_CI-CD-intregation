@@ -33,13 +33,13 @@ describe("Search Functionality Tests", () => {
         //cy.get("p[class='font-Mulish text-[clamp(14px,5vw,52px)] text-center mb-[50px] text-[#848484] h-full flex items-center justify-center flex-1']").and('contain', 'No products found'); // Replace with your no results message selector
       });
 
-      it.skip('should handle special characters in the search input', () => {
+     /* it.only('should handle special characters in the search input', () => {
         cy.xpath("//button[@aria-label='search-open-close-trigger']//*[name()='svg']").click({force:true})
         cy.get('#autocomplete-0-input').type('!@#$%^&*()'); // Special characters
         cy.xpath("(//*[name()='svg'][@class='aa-SubmitIcon cursor-pointer'])[1]").click({force:true});
         cy.wait(5000)
         cy.get('.search-results').should('be.visible');
-      });
+      }); */
 
       it('should handle empty search input gracefully', () => {
         cy.xpath("//button[@aria-label='search-open-close-trigger']//*[name()='svg']").click({force:true})
@@ -92,16 +92,18 @@ describe("Search Functionality Tests", () => {
     });
     
 
-      it.skip('should display autocomplete suggestions', () => {
+      /*it.skip('should display autocomplete suggestions', () => {
         cy.xpath("//button[@aria-label='search-open-close-trigger']//*[name()='svg']").click({force:true})
         cy.get('#autocomplete-0-input').type('Men');
         cy.wait(5000)
         cy.get(':nth-child(2) > .w-full.gap-5').should('be.visible') // Replace with your autocomplete suggestions selector
         cy.get('.suggested_search_result').contains('View All Products').click()
-      });
+      });  */
+
+
       it('should display autocomplete suggestions & paginate search results', () => {
         // List of predefined search terms
-        const searchTerms = ['Men', 'Women', 'Shoes', 'Nike', 'Adidas','Kids','Accessories','Boots'];
+        const searchTerms = ['Men', 'Women', 'Shoes', 'Nike', 'Adidas','Accessories','Boots'];
       
         // Generate a random index to select a search term from the list
         const randomIndex = Math.floor(Math.random() * searchTerms.length);

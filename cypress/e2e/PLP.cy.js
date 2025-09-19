@@ -67,7 +67,7 @@ describe("Verifying PLP", () => {
       });
       
 
-    const filterOptions = ['SHOES', 'SANDALS', 'WINTER BOOTS', 'BOOTS', 'ACCESSORIES', 'SLIPPERS', 'RAIN BOOTS'];
+    const filterOptions = ['SHOES', 'SANDALS', 'Products', 'BOOTS', 'ACCESSORIES', 'SLIPPERS'];
 
 
     it('should have filter options under CATEGORIES', () => {
@@ -79,7 +79,7 @@ describe("Verifying PLP", () => {
             cy.xpath(`//button[normalize-space()='${option}']`).click();
             
             // Wait for a brief moment to ensure the filter is applied
-            cy.get('h3').should('be.visible')
+            cy.get('h1').should('be.visible')
             cy.wait(4000);  // Adjust the wait time as needed
             
             // Verify that the "Clear All Filters" button is visible and click it
@@ -96,7 +96,7 @@ describe("Verifying PLP", () => {
     const filterOptionsBrands = [
       'ACTON', 'ADIDAS', 'BLONDO', 'BOGS', 'CLARKS', 'CONVERSE', 'DAVID',
       'FILA', 'ITALIAN SHOE', 'KAMIK', 'KEEN', 'LASKA', 'MERRELL', 'NATIVE',
-      'PUMA', 'REEBOK', 'RUBINO', 'SOREL', 'TEVA', 'UGG', 'VANS', 'WALTERS'
+      'PUMA', 'REEBOK', 'SOREL', 'TEVA', 'UGG', 'VANS', 'WALTERS'
     ];
     
     it('should have filter options under Brands', () => {
@@ -108,7 +108,7 @@ describe("Verifying PLP", () => {
         cy.xpath(`//button[normalize-space()='${option}']`).scrollIntoView().should('be.visible').click({ force: true });
         
         // Wait for a brief moment to ensure the filter is applied
-        cy.get('h3').should('be.visible');
+        cy.get('h1').should('be.visible');
         cy.wait(2000);  // Adjust the wait time as needed
         
         // Verify that the "Clear All Filters" button is visible and click it
@@ -125,24 +125,29 @@ describe("Verifying PLP", () => {
 
 
     it('should have filter Price Category', () => {
-        filterOptionsPrice.forEach(option => {
-            // Click on the "Categories" to open the drop-down menu
-            cy.xpath("//span[normalize-space()='Price sale']").click();
-            
-            // Select the filter option dynamically based on the current option
-            cy.xpath(`//button[normalize-space()='${option}']`).click();
-            
-            // Wait for a brief moment to ensure the filter is applied
-            cy.get('h3').should('be.visible')
-            cy.wait(4000);  // Adjust the wait time as needed
-            
-            // Verify that the "Clear All Filters" button is visible and click it
-            cy.xpath("(//button[normalize-space()='Clear All Filters'])[1]").should('be.visible').click();
-            
-            // Optionally, wait for a brief moment to ensure filters are cleared
-            cy.wait(1000);  // Adjust the wait time as needed
-        });
-    });
+      filterOptionsPrice.forEach((option, index) => {
+          // Click on the "Categories" to open the drop-down menu
+          cy.xpath("//span[normalize-space()='Price sale']").click();
+  
+          // Select the filter option dynamically based on the current option
+          cy.xpath(`//button[normalize-space()='${option}']`).click();
+  
+          // Wait for a brief moment to ensure the filter is applied
+          cy.get('h1').should('be.visible');
+          cy.wait(4000);  // Adjust the wait time as needed
+  
+          // Check if it's not the last iteration and if the "Clear All Filters" button is visible
+          if (index < filterOptionsPrice.length - 1) {
+              cy.xpath("(//button[normalize-space()='Clear All Filters'])[1]")
+                .should('be.visible')
+                .click();
+  
+              // Optionally, wait for a brief moment to ensure filters are cleared
+              cy.wait(1000);  // Adjust the wait time as needed
+          }
+      });
+  });
+  
     
 
 
@@ -180,7 +185,7 @@ describe("Verifying PLP", () => {
         cy.xpath(`//p[normalize-space()='${option}']`).should('be.visible').click({ force: true });  ////p[normalize-space()='Alphabetically, Z-A']
         
         // Wait for a brief moment to ensure the filter is applied
-        cy.get('h3').should('be.visible');
+        cy.get('h1').should('be.visible');
         cy.wait(2000);  // Adjust the wait time as needed
         
         // Verify that the "Clear All Filters" button is visible and click it

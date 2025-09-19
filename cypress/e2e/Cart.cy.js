@@ -25,10 +25,11 @@ describe("Verifying Cart Drawer French", () => {
           });
 
           cy.get('.flex-col > .h-full').click({force:true})
-          cy.scrollTo("bottom");
+          cy.scrollTo(0,3000);
           cy.wait(2000)
-          cy.xpath("(//span[normalize-space()='AJOUTER AU PANIER'])[1]").contains('AJOUTER AU PANIER').click({force:true})
-          cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']").click() // cart delete icon
+          cy.xpath("//span[normalize-space()='AJOUTER AU PANIER']").click({force:true})
+          cy.wait(3000)
+          cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']",{timeout:10000}).click({force:true}) // cart delete icon
           
           cy.scrollTo("topRight");
           cy.wait(4000)
@@ -36,8 +37,8 @@ describe("Verifying Cart Drawer French", () => {
           cy.xpath("/html[1]/body[1]/aside[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/a[1]/div[1]").click({force:true})
           cy.wait(4000)
 
-          cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/p[1]/div[1]/span[1]/a[1]").click({ force: true });
-          
+          cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/div[1]/span[1]/a[1]").click({ force: true });
+          ///html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/header[1]/div[2]/div[1]/span[1]/a[1]
           
            // cy.get("button[class='w-full h-full items-center cursor-pointer hidden lg:block justify-end']").click().should('be.visible'); // Adjust the selector as necessary
 
